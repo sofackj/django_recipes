@@ -1,0 +1,22 @@
+{% extends "blog/base.html" %}
+{% comment %} {% load static %} {% endcomment %}
+{%  block content %}
+ <h1>Inscription</h1
+ <div id="inscription">
+ <form method="post" action="inscriptionp" >
+ <input id="nom" name="nom" type="text" class="inputChamp" placeholder="Votre nom *"/><br />
+ <input id="pseudo" name="pseudo" type="text" class="inputChamp" placeholder="Votre pseudo *" /><br />
+ <input id="email" name="email" type="text" class="inputChamp" placeholder="Votre email *" /><br />
+ <input id="mdp" name="mdp" type="password" class="inputChamp" placeholder="Votre mot de passe *" /><br />
+ <br />
+ <input type="submit" value="Je 'm'inscris" class="submitBtn" />
+ </form>
+ </div>
+ <div id="erreur">
+ <p> Bienvenu nom </p>
+ </div>
+ <div id="erreur">
+ <p> Erreurs </p>
+ </div>
+ </div>
+ {% endblock %}

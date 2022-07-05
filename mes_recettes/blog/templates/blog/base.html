@@ -1,0 +1,40 @@
+{% load static %}
+<!doctype html>
+<html lang="fr">
+ <head>
+ <meta charset="UTF-8" />
+ <link rel="stylesheet" href="{% static 'blog/style.css' %}" />
+ <title>{% block title %}Mon Blog de Recettes{% endblock %}</title>
+ </head>
+ <body>
+ <header id="header">
+ <a href="{% url 'index' %}"><h1 id="titreBlog">Mon Blog de Recettes</h1></a>
+ <div style="width:300px;margin:20px auto;">Bienvenue sur mon blog de recettes</div>
+ <nav id="loginBar">
+ <div class="login">
+ <a class="primaryBtn login" href="{% url 'formulaire' %}">Inscription</a>
+ </div>
+ </nav>
+ </header>
+
+ <div id="global">
+ {% block categorie_nav %}
+ <div id="categorie">
+ <ul>
+   {% for categorie in categories %}
+   <li {% if selected_categorie.id == categorie.id %}class='selected'{% endif %}>
+      <a href="{% url 'categorie' categorie.id %}">{{ categorie.nom }}</a></li>
+   {% endfor %}
+ </ul>
+ </div>
+ {% endblock %}
+ 
+
+ {% block content  %}{% endblock %}
+</div>
+
+ <footer id="piedBlog">
+    Blog réalisé par 
+ </footer> 
+ </body>
+</html>
