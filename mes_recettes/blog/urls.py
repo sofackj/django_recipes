@@ -7,6 +7,8 @@ urlpatterns = [
     path('recette/<id_recette>', views.recette, name='recette'),
     path('formulaire', views.formulaire, name='formulaire'),
     path('categorie/<str:id_categorie>', views.categorie, name='categorie'),
+    path('connexion', views.connexion, name='connexion'),
+    path('deconnexion', views.deconnexion, name='deconnexion'),
 ]
 
 

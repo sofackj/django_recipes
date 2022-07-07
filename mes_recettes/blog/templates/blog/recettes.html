@@ -7,11 +7,13 @@
  <h1 class="titreRecette">
     {{ recette.nom }}  
  </h1>
+ {% for n in notes %}
+    {% if n %}
  <span class="fa fa-star checked"></span>
- <span class="fa fa-star checked"></span>
- <span class="fa fa-star checked"></span>
- <span class="fa fa-star checked"></span>
+    {% else %}
  <span class="fa fa-star"></span>
+    {% endif %}
+ {% endfor %}
  </br>
  <time>
     {{ recette.date_parution }} 
@@ -45,24 +47,22 @@ Commentaires
 <hr>
     {% endfor %}
 </div> 
-<form method="post" action="recette/idRecette" >
-<input id="auteur" name="auteur" type="text" placeholder="Votre nom *" class="inputChamp" /
-><br />
-<textarea id="txtCommentaire" name="contenu" rows="4" placeholder="Votre commentaire *" cla
-ss="inputTextArea" ></textarea><br/>
-<label for="note">Note</label><br />
-<select name="note" id="note" class="select">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-</select>
+<form method="post" action="{% url 'recette' recette.id %}" >
+{% csrf_token %}
+{{ form.as_p }}
 <br />
 <input type="submit" value="Commenter" class="submitBtn" />
 </form>
 <div id="erreur">
-<p> Erreurs </p>
-</div> 
+    <p>
+       {% if form.errors %}
+           {% for field in form %}
+               {% for error in field.errors %}
+                   <div>{{ field.label }} : {{ error|escape }}</div>
+               {% endfor %}
+           {% endfor %}
+       {% endif %}
+    </p>
+    </div>
 </div>
 {% endblock %}

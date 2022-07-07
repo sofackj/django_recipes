@@ -4,6 +4,7 @@
  <head>
  <meta charset="UTF-8" />
  <link rel="stylesheet" href="{% static 'blog/style.css' %}" />
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
  <title>{% block title %}Mon Blog de Recettes{% endblock %}</title>
  </head>
  <body>
@@ -11,9 +12,21 @@
  <a href="{% url 'index' %}"><h1 id="titreBlog">Mon Blog de Recettes</h1></a>
  <div style="width:300px;margin:20px auto;">Bienvenue sur mon blog de recettes</div>
  <nav id="loginBar">
+   {% if member %}
+   <div>
+      Bonjour {{ member.pseudo }}
+   </div>
+   <div class="login">
+      <a class="primaryBtn login" href="{% url 'deconnexion' %}">Deconnexion</a>
+   </div>
+   {% else %}
  <div class="login">
  <a class="primaryBtn login" href="{% url 'formulaire' %}">Inscription</a>
  </div>
+ <div class="login">
+   <a class="primaryBtn login" href="{% url 'connexion' %}">Connexion</a>
+   </div>
+   {% endif %}
  </nav>
  </header>
 
